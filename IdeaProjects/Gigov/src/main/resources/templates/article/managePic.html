@@ -1,0 +1,36 @@
+<main>
+    <div class="container body-content span=8 offset=2">
+        <div class="well">
+
+                <fieldset>
+                    <legend>Manage Article Pictures</legend>
+                    <div class="form-group">
+                        <li th:each="photo:${article.photos}">
+                            <form class="form-horizontal" th:action="@{'/article/' + ${article.id} + '/photo/delete/' + ${photo.id}}" method="POST">
+                            <img style="height: 300px; width: 450px" th:src="@{'data:image/png;base64, ' + ${photo.data}}" />
+
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                            </form>
+                        </li>
+
+                        <form class="form-horizontal" th:action="@{/article/addPic/{articleId}(articleId=${article.id})}" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <br/>
+                                <label class="col-sm-4 control-label" for="photo1">Add Article Picture</label>
+                                <div class="col-sm-4">
+                                    <input type="file" class="form-control" id="photo1" placeholder="Password" name="photos" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-4">
+                                    <a class="btn btn-default" th:href="@{/article/edit/{id}(id = ${article.id})}">Cancel</a>
+                                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+
+        </div>
+    </div>
+</main>

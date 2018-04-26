@@ -1,0 +1,71 @@
+<header th:fragment="header">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Gigov Blog
+                Articles
+            </div>
+            <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">
+                Sofia | DMG WEB | 2017
+            </div>
+            <div class="navbar-header">
+                <a th:href="@{/}" class="navbar-brand">HOME</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div id="custom-search-input">
+                            <div class="input-group col-sm-12">
+                                <input id="search" type="text" class="search-query form-control" placeholder="Search"/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown" sec:authorize="hasRole('ADMIN')">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a th:href="@{/admin/categories/}">Categories</a></li>
+                            <li><a th:href="@{/admin/users/}">Users</a></li>
+                        </ul>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a th:href="@{/article/create}">
+                            Create Article
+                        </a>
+                    </li>
+
+                    <li sec:authorize="isAuthenticated()">
+                        <a th:href="@{/profile}">
+                            My Profile
+                        </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a th:href="@{/logout}">
+                            Logout
+                        </a>
+                    </li>
+
+                    <li sec:authorize="isAnonymous()">
+                        <a th:href="@{/register}">
+                            REGISTER
+                        </a>
+                    </li>
+                    <li sec:authorize="isAnonymous()">
+                        <a th:href="@{/login}">
+                            LOGIN
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
